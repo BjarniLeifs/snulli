@@ -7,9 +7,6 @@ const testDataService = require('./../../data/test/testauthentication');
 
 var http = require('http');
 
-exports.loadData = () => {
-	testDataService.addUsers();
-};
 
 exports.getUserInfo = (username) => {
 	"use strict";

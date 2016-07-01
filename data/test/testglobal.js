@@ -11,6 +11,13 @@ const config = require('./../../config/configuration');
 const connectionString = process.env.DATABASE_URL || config.addTestUserUrl;
 const bcrypt = require('bcryptjs');
 
+var user = {
+	username  		: 'test',
+	name 			: 'test',
+	email	   		: 'test@armor.is',
+	password 		: 'test'
+};
+register(user);
 /* register new user */
 function register (req) {
 	"use strict";

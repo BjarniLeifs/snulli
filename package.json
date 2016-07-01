@@ -6,10 +6,10 @@
     "start": "mocha && grunt",
     "global-mac": "sudo npm install mocha nodemon grunt grunt-cli -g",
     "global-win": "npm install mocha nodemon grunt grunt-cli -g",
-    "setup-mac": "npm install && createdb armor && createdb testarmor && psql -d armor -f sqlSchems/database.sql && psql -d testarmor -f sqlSchems/database.sql && node data/test/testuser.js",
+    "setup-mac": "npm install && createdb armor && createdb testarmor && psql -d armor -f sqlSchems/database.sql && psql -d testarmor -f sqlSchems/database.sql && node data/test/testglobal.js",
     "dbtables": "psql -d armor -f sqlSchems/database.sql && psql -d testarmor -f sqlSchems/database.sql",
-    "add-testuser": "node data/test/testuser.js",
-    "test": "mocha -w"
+    "add-testuser": "node data/test/testglobal.js",
+    "test": "mocha"
   },
   "dependencies": {
     "bcryptjs": "^2.3.0",

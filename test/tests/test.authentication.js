@@ -1,22 +1,8 @@
 var request     = require('supertest');
 var authservice = require('../library/authentication');
 
-/*
-var user1 = {
-  username      : 'remove1',
-  name      : 'remove1',
-  email       : 'remove1@armor.is',
-  password    : 'remove1'
-};
-var user2 = {
-  username      : 'remove2',
-  name      : 'remove2',
-  email       : 'remove2@armor.is',
-  password    : 'remove2'
-};
 
-*/
-authservice.loadData();
+
 describe('Tests for Authentication', function () {
 
   var server, userToken, user, failUser, registerUser, registarUserDb; 
@@ -37,7 +23,6 @@ describe('Tests for Authentication', function () {
       'email'    : 'test@armor.is', 
       'password' : 'test'
     };
-
     failUser = {
       'username' : 'test',
       'name'     : 'test',

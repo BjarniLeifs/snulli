@@ -11,13 +11,29 @@ const config = require('./../../config/configuration');
 const connectionString = process.env.DATABASE_URL || config.addTestUserUrl;
 const bcrypt = require('bcryptjs');
 
-var user = {
-	username  		: 'test',
-	name 			: 'test',
-	email	   		: 'test@armor.is',
-	password 		: 'test'
+var user1 = {
+	username  		: 'remove1',
+	name 			: 'remove1',
+	email	   		: 'remove1@armor.is',
+	password 		: 'remove1'
 };
-register(user);
+var user2 = {
+	username  		: 'remove2',
+	name 			: 'remove2',
+	email	   		: 'remove2@armor.is',
+	password 		: 'remove2'
+};
+
+exports.addUsers = () => {
+	register(user1);
+	register(user2);
+
+	console.log("-------------------------------------");
+	console.log("|  Test data successfully executed  |");
+	console.log("-------------------------------------");
+	process.exit();
+}
+
 /* register new user */
 function register (req) {
 	"use strict";
@@ -53,7 +69,6 @@ function register (req) {
 						console.log("Error from database" + err);
 					} else {
 						done();
-						console.log("User added to test database");
 					}
 					process.exit();
 				});

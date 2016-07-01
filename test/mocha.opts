@@ -2,7 +2,6 @@
 --recursive
 --reporter spec
 --ui tdd 
---recursive
 --colors
 --timeout 60000
 --slow 300s
