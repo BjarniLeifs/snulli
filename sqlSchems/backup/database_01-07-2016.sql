@@ -83,7 +83,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY users (id, resettoken, tokenexpired, name, email, username, hash, admin) FROM stdin;
+COPY users (id, resettoken, tokenexpired, name, email, username, hash, salt) FROM stdin;
 \.
 
 

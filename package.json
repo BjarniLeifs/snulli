@@ -6,9 +6,14 @@
     "start": "mocha && grunt",
     "global-mac": "sudo npm install mocha nodemon grunt grunt-cli -g",
     "global-win": "npm install mocha nodemon grunt grunt-cli -g",
-    "setup-mac": "npm install && createdb armor && createdb testarmor && psql -d armor -f sqlSchems/database.sql && psql -d testarmor -f sqlSchems/database.sql && node data/test/testglobal.js",
-    "dbtables": "psql -d armor -f sqlSchems/database.sql && psql -d testarmor -f sqlSchems/database.sql",
-    "add-testuser": "node data/test/testglobal.js",
+    "setup-mac": "npm install && npm run createdb && npm run schema-db && npm run add-testdata",
+    "setup-win": "echo 'It needs to be set, please fix this'",
+    "createdb": "createdb armor && createdb testarmor",
+    "dropdb": "dropdb armor && dropdb testarmor",
+    "schemadb-mac": "psql -d armor -f sqlSchems/database.sql && psql -d testarmor -f sqlSchems/database.sql",
+    "backupdb-mac": "cat ./sqlSchems/database.sql > ./sqlSchems/backup/database_`date +\"%d-%m-%Y\"`.sql",
+    "dumpdb" : "pg_dump armor > ./sqlSchems/database.sql",
+    "add-testdata": "node data/test/testglobal.js",
     "test": "mocha"
   },
   "dependencies": {
