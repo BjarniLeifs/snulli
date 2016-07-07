@@ -7,8 +7,8 @@ module.exports = (grunt) => {
         banner: '/*! Made on <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       basic: {
-        src: ['public/javascripts/**/*.js'],
-        dest: 'public/main/myApp.js',
+        src: ['public/library/**/**/*.js'],
+        dest: 'public/build/myApp.js',
       }
     },
     uglify: {
@@ -17,7 +17,7 @@ module.exports = (grunt) => {
       },
       basic: {
         files: {
-          'public/main/myApp.min.js': ['<%= concat.basic.dest %>']
+          'public/build/myApp.min.js': ['<%= concat.basic.dest %>']
         }
       }
     },
@@ -26,8 +26,8 @@ module.exports = (grunt) => {
         banner: '/*! Made on <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       all: {
-        src: ['public/stylesheets/css/**/*.css'],
-        dest: 'public/main/myApp.css',
+        src: ['public/library/**/*.css'],
+        dest: 'public/build/myApp.css',
       }
     },
     cssmin: {
@@ -36,8 +36,8 @@ module.exports = (grunt) => {
         banner: '/*! Made on <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       site: {
-        src: ['public/main/myApp.css'],
-        dest: 'public/main/myApp.min.css'
+        src: ['public/build/myApp.css'],
+        dest: 'public/build/myApp.min.css'
       }
     },
     jshint: {
@@ -80,14 +80,14 @@ module.exports = (grunt) => {
     },
     watch: {
       js: {
-        files: ['public/javascripts/**/*.js'],
+        files: ['public/library/**/**/*.js'],
         tasks: ['concat:basic', 'uglify'],
         options: {
           livereload: true,
         }
       },
       css: {
-        files: ['public/stylesheets/css/**/*.css'],
+        files: ['public/library/**/**/*.css'],
         tasks: ['concat_css', 'cssmin'],
         options: {
           nospawn: false
