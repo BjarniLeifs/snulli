@@ -8,7 +8,7 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$http
         $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: 'library/components/navigation/navMain.html',
+            templateUrl: 'library/navigation/navMain.html',
             controller: 'AuthCtrl',
             onEnter: ['$state', 'auth', function ($state, auth) {
                 if (!auth.isLoggedIn()) {
@@ -16,7 +16,7 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$http
                 } 
 
             }]
-        })
+        });
         /*.state('login', {
             url: '/login',
             templateUrl: 'views/partial/authenticate/login.html',
@@ -33,12 +33,7 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$http
             controller: 'AuthCtrl',
         })
         */
-        .state('test', {
-            url: '/views',
-            templateUrl: 'views/error.html',
-            controller: 'AuthCtrl',
-
-        });
+    
 
 
         $urlRouterProvider.otherwise('home');
