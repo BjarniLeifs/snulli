@@ -40,7 +40,7 @@ app.engine('html', require('ejs').renderFile);
 
 /* set path to views */
 
-app.set('views', path.join(__dirname, 'public/views'));
+app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'html');
 
 /* uncomment after placing your favicon in /public */
@@ -113,10 +113,7 @@ app.use((req, res, next) => {
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+    res.status(404).json({ message: err.message, error: err});
   });
 }
 
@@ -126,10 +123,7 @@ if (app.get('env') === 'development') {
 */
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  res.status(404).json({ message: err.message, error: {}});
 });
 
 /* Exports the app. */
