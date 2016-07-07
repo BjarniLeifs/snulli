@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 /* Definging postgressSQL module */
@@ -33,6 +34,7 @@ router.get('/users/users', (req, res, next) => {
 
 /* Delete user, this is only for the user himself, if not the same then nothing happens*/
 router.delete('/users/user/:id', (req, res, next) => {
+	"use strict";
 	if(!req.params.id) {
 		return res.status(400).json({messgae : 'You have to provide id of user'});
 	}
@@ -55,6 +57,7 @@ router.delete('/users/user/:id', (req, res, next) => {
 
 /* Delete user, this is only for the user himself, if not the same then nothing happens*/
 router.delete('/users/user/:username', (req, res, next) => {
+	"use strict";
 	if(!req.params.username) {
 		return res.status(400).json({messgae : 'You have to provide id of user'});
 	}
