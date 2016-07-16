@@ -6,7 +6,7 @@
     "start": "mocha && grunt",
     "global-mac": "sudo npm install mocha nodemon grunt grunt-cli -g",
     "global-win": "npm install mocha nodemon grunt grunt-cli -g",
-    "setup-mac": "npm install && npm run createdb && npm run schema-db && npm run add-testdata",
+    "setup-mac": "npm run createdb && npm run schema-db && npm run add-testdata",
     "setup-win": "echo 'It needs to be set, please fix this'",
     "createdb": "createdb armor && createdb testarmor",
     "dropdb": "dropdb armor && dropdb testarmor",
