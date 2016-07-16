@@ -1,4 +1,4 @@
 node_modules
 public/build
 testResults.txt
-npm-debug.log
+npm-debug.log*
