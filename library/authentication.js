@@ -115,6 +115,8 @@ exports.generateJWT = (object) => {
 
 		
 	scopes.push('user');
+	if (object.admin)
+		scopes.push('admin');
 
 
 	/* Sign the token and return it. */

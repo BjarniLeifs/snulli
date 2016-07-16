@@ -12,10 +12,10 @@ const connectionString = process.env.DATABASE_URL || config.connectionUrl;
 const service  	= require('./../library/dbLibrary');
 const dateService = require('./../library/dates');
 const authService = require('./../library/authentication');
-
+const authenticated = require('./../library/scopes');
 
 /* GET users listing. */
-router.get('/users/users', (req, res, next) => {
+router.get('/users/users', authenticated.scopes('user'), (req, res, next) => {
 	"use strict";
 	let table = 'users';
 	let string = 'SELECT * FROM ' + table;
