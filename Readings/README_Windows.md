@@ -29,7 +29,7 @@ go into the directory where you stored armor and type "npm run start"
 - |- test			(* Test data for server testing *)
 
 # Code rules
-- Camel casing is used
+- Camel casing is used <br />
 	example: var thisNamingStyle
 
 - Comments should be created above each new instance of function where there is a description of what this function is for and how to use.
