@@ -32,14 +32,14 @@ go into the directory where you stored armor and type "npm run start"
 - Camel casing is used <br />
 	example: var thisNamingStyle
 
-- Comments should be created above each new instance of function where there is a description of what this function is for and how to use.
-	example: /* 
-					Description: Used to descripe the functionality
-					Usage: How to use this function
-			*/
+- Comments should be created above each new instance of function where there is a description of what this function is for and how to use.<br />
+	example: /* <br />
+					Description: Used to descripe the functionality<br />
+					Usage: How to use this function<br />
+			*/<br />
 
-- if there is set of objects with comma seperation then they should be put into new line each of them where ":" is inline with each new set.
-	example: Let someObject = {
-									username: someObject.username,
-									stuff	: someObject.stuff
-							  }; 
+- if there is set of objects with comma seperation then they should be put into new line each of them where ":" is inline with each new set.<br />
+	example: Let someObject = {<br />
+									username: someObject.username,<br />
+									stuff	: someObject.stuff<br />
+							  }; <br />
