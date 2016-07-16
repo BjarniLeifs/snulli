@@ -1,19 +1,19 @@
 # README *Windows*
 ## Setup
-get & install [nodejs](https://nodejs.org/dist/v6.3.0/node-v6.3.0-x64.msi)
-get & install [Githup](https://github-windows.s3.amazonaws.com/GitHubSetup.exe)
+get & install [nodejs](https://nodejs.org/dist/v6.3.0/node-v6.3.0-x64.msi) <br />
+get & install [Githup](https://github-windows.s3.amazonaws.com/GitHubSetup.exe) <br />
 
-open Github desktop and clone armor from github.
-run command prompt [cmd](http://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/)
-Go into the location where you stored armor and type "npm run setup-win"
+open Github desktop and clone armor from github. <br />
+run command prompt [cmd](http://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/) <br />
+Go into the location where you stored armor and type "npm run setup-win" <br />
 
-This will install postgres 9.5 and all the dependacies needed for the system to function correctly
+This will install postgres 9.5 and all the dependacies needed for the system to function correctly <br />
 - user for the postgres server will be the username of your computer
 - password for postgres will be 1234
 
 ## Run
-run command prompt [cmd](http://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/)
-go into the directory where you stored armor and type "npm run start"
+run command prompt [cmd](http://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/) <br />
+go into the directory where you stored armor and type "npm run start" <br />
     
 ### Folder structure
 - snulli (* Main directory *)
