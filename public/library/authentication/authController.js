@@ -24,7 +24,7 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', '$stateParams', '$locati
 	    		).error(function (error) {
 					$scope.error = error;
 				}).then(function () {
-					$timeout(function() { $state.go('home'); }, 10);
+					$timeout(function() { $state.go('home'); }, 5);
 				});
 				$scope.clearRegister();
 	
