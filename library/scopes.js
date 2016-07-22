@@ -1,7 +1,7 @@
 //let exports = module.exports = {};
 
 /* load the modern build */ 
-let _ = require('lodash');
+const _ = require('lodash');
 
 /* To check if person scopes (rights) */
 exports.scopes = (string) => {
