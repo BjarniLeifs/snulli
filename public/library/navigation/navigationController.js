@@ -1,19 +1,19 @@
 /* NavController */
-app.controller('NavCtrl', ['$scope', 'auth',
-    function ($scope, auth) {
-    	
-    	$scope.user = {
-    		username : $scope.username,
-    		password : $scope.password
-    	};
-
+app.controller('NavCtrl', ['$scope', 'auth', '$timeout', '$state', "$stateParams", "$location", 
+    function ($scope, auth, $state, $stateParams, $location, $timeout) {
 		$scope.logIn = function () {
-			auth.logIn($scope.user).error(function (error) {
+			auth.logIn(
+				{
+    				username : $scope.username,
+    				password : $scope.password
+    			}
+    		).error(function (error) {
 				$scope.error = error;
 			}).then(function () {
-				$state.go('home');
+				
 			});
-			$timeout(function() { $scope.error = false; }, 1000);
+			$state.go('home');
+			//$timeout(function() { $scope.error = false; }, 1000);
 		};
 
     }

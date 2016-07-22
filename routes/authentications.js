@@ -19,6 +19,7 @@ const authService = require('./../library/authentication');
 /* function register for registering new users */
 router.post('/register', (req, res, next) => {
 	"use strict";
+	console.log(req.body);
 	/* USERNAME should be lowerCASE! to ensure we get unique names at all times. */
 	let resUser = [req.body.username];
 	/* Defining and looking for user with username before I can add to database.*/
@@ -50,6 +51,7 @@ router.post('/register', (req, res, next) => {
 router.post('/login', (req, res, next) => {
 	"use strict";
 	if (!req.body.username || !req.body.password) {
+		console.log(req.body);
 		return res.status(400).json({message: 'Please fill out all fields!'});
 	}
 	let table = 'users';

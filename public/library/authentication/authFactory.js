@@ -2,14 +2,11 @@
 
 app.factory('auth', ['$http', '$window', '$location', function ($http, $window, $location) {
     return {
-        saveToken: function (token) {
-            $window.localStorage['appToken'] = token;
-        },
         getToken: function () {
             return $window.localStorage['appToken'];
         },
         isLoggedIn: function () {
-            var token = auth.getToken();
+            var token = getToken();
 
             if(token){
                 var payload = JSON.parse($window.atob( token.split('.')[1]) );
@@ -25,7 +22,7 @@ app.factory('auth', ['$http', '$window', '$location', function ($http, $window, 
         },
         logIn: function (user) {
             return $http.post('/auth/login', user).success(function (data) {
-                auth.saveToken(data.token);
+                $window.localStorage['appToken'] = data.token;
             });
         },
         logOut: function () {
