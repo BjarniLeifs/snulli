@@ -17,19 +17,46 @@
         <li><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register / Login <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            
+            <li>
+              <form ng-submit="logIn()" class="login-form">        
+                <div class="">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Username" ng-model="user.username" autofocus>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+                    <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+                  </div>
+                  <button class="btn btn-default  btn-block" type="submit">Login</button>
+                </div>
+              </form>
+            </li>
+
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li>
+              <a ui-sref="forgotpassword">Forgot password</a>
+            </li>
+
+            <li role="separator" class="divider"></li>
+            <li>
+
+              <a ui-sref="home.register">Register</a>
+            </li>
           </ul>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<div ng-show="error" class="alert alert-danger row">
+                     <span>{{ error.message }}</span>
+                </div> 
 <div ui-view ></div>

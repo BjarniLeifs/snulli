@@ -22,84 +22,16 @@ app.factory('auth', ['$http', '$window', '$location', function ($http, $window, 
             return false;
         }
     };
-    auth.isAdmin = function() {
-  
-        var token = auth.getToken();
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
-        var scopes = payload.scopes;
-        for (var i = 0; i < scopes.length; i++) {
-            if (scopes[i] === 'admin') {
-                return true;
-            }
-        }
-        return false;
-
-    };
-    auth.isMod = function() {
-   
-        var token = auth.getToken();
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
-        var scopes = payload.scopes;
-        for (var i = 0; i < scopes.length; i++) {
-            if (scopes[i] === 'moderator' || scopes[i] === 'admin') {
-                return true;
-            }
-        }
-        return false;
-
-    };
-    auth.isWriter = function() {
-
-        var token = auth.getToken();
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
-        var scopes = payload.scopes;
-        for (var i = 0; i < scopes.length; i++) {
-            if (scopes[i] === 'moderator' || scopes[i] ==='admin' || scopes[i] === 'writer') {
-                return true;
-            }
-        }
-        return false;
-
-    };
-    auth.currentUser = function () {
-        if(auth.isLoggedIn()){
-            var token = auth.getToken();
-            var payload = JSON.parse($window.atob(token.split('.')[1]));
-
-            return payload.username;
-        }
-    };
-    auth.currentUserId = function () {
-        if(auth.isLoggedIn()){
-            var token = auth.getToken();
-            var payload = JSON.parse($window.atob(token.split('.')[1]));
-            return payload.id;
-        }
-    };
-    auth.currentName = function() {
-  
-        var token = auth.getToken();
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
-        return payload.name;
-
-    };
-    auth.imageurl = function () {
-        if(auth.isLoggedIn()){
-            var token = auth.getToken();
-            var payload = JSON.parse($window.atob(token.split('.')[1]));
-
-            return payload.imageurl;
-        }
-    };
 
     auth.register = function (user) {
-        $http.post('/register', user).success(function (data) {
+
+        return $http.post('/auth/register', user).success(function (data) {
 
         });
     };
 
     auth.logIn = function (user) {
-        return $http.post('/login', user).success(function (data) {
+        return $http.post('/auth/login', user).success(function (data) {
             auth.saveToken(data.token);
         });
     };
@@ -107,7 +39,7 @@ app.factory('auth', ['$http', '$window', '$location', function ($http, $window, 
 
     auth.logOut = function () {
         $window.localStorage.removeItem('appToken');
-        $location.path('/login');
+        $location.path('/home');
     };
 
     auth.resetPassword = function (email) {
@@ -115,14 +47,14 @@ app.factory('auth', ['$http', '$window', '$location', function ($http, $window, 
         var object = {
             email: email
         };
-        $http.post('/forgotPassword', {  email: email }).success(function (data) {
+        $http.post('/auth/forgotPassword', {  email: email }).success(function (data) {
             angular.copy(data, returnMe);
         });
         return returnMe;
     };
     auth.newPassword = function (object) {
         var returnMe;
-        $http.post('/reset/'+object.token, object).success(function (data) {
+        $http.post('/auth/reset/'+object.token, object).success(function (data) {
             angular.copy(data, returnMe);
         });
         return returnMe;

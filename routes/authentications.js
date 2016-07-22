@@ -69,7 +69,7 @@ router.post('/login', (req, res, next) => {
 					}
 				});
 			} else {
-				return res.status(400).json({message: 'No such user.'});
+				return res.status(550).json({message: 'No such user.'});
 			}
 		}
 	});

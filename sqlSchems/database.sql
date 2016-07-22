@@ -34,25 +34,23 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: area; Type: TABLE; Schema: public; Owner: postgres
+-- Name: city; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE area (
+CREATE TABLE city (
     id integer NOT NULL,
-    zipcode integer,
-    name character varying,
-    pictures json,
-    info json
+    name text,
+    area_code integer
 );
 
 
-ALTER TABLE area OWNER TO postgres;
+ALTER TABLE city OWNER TO postgres;
 
 --
--- Name: area_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: city_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE area_id_seq
+CREATE SEQUENCE city_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -60,48 +58,13 @@ CREATE SEQUENCE area_id_seq
     CACHE 1;
 
 
-ALTER TABLE area_id_seq OWNER TO postgres;
+ALTER TABLE city_id_seq OWNER TO postgres;
 
 --
--- Name: area_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: city_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE area_id_seq OWNED BY area.id;
-
-
---
--- Name: category; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE category (
-    id integer NOT NULL,
-    name character varying,
-    picture json,
-    info json
-);
-
-
-ALTER TABLE category OWNER TO postgres;
-
---
--- Name: catagory_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE catagory_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE catagory_id_seq OWNER TO postgres;
-
---
--- Name: catagory_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE catagory_id_seq OWNED BY category.id;
+ALTER SEQUENCE city_id_seq OWNED BY city.id;
 
 
 --
@@ -109,89 +72,29 @@ ALTER SEQUENCE catagory_id_seq OWNED BY category.id;
 --
 
 CREATE TABLE company (
-    id integer NOT NULL,
-    name character varying,
-    gps point,
-    phone text,
-    address text,
-    owner_id integer,
-    area_id integer,
-    category_id integer,
-    picutres json,
-    hours json,
-    info json,
-    active boolean,
-    expires timestamp with time zone,
-    users integer[]
 );
 
 
 ALTER TABLE company OWNER TO postgres;
 
 --
--- Name: company_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: country; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE company_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE company_id_seq OWNER TO postgres;
-
---
--- Name: company_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE company_id_seq OWNED BY company.id;
-
-
---
--- Name: company_routes; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE company_routes (
+CREATE TABLE country (
     id integer NOT NULL,
-    company_id integer,
-    name character varying,
-    gps point[],
-    distance character varying,
-    "time" character varying,
-    info json,
-    pictures json
+    name text,
+    land_code text
 );
 
 
-ALTER TABLE company_routes OWNER TO postgres;
+ALTER TABLE country OWNER TO postgres;
 
 --
--- Name: routes; Type: TABLE; Schema: public; Owner: postgres
+-- Name: country_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE routes (
-    id integer NOT NULL,
-    name character varying,
-    category_id integer,
-    "unique" boolean,
-    gps point[],
-    pictures json,
-    info json,
-    user_id integer,
-    active boolean,
-    area_id integer
-);
-
-
-ALTER TABLE routes OWNER TO postgres;
-
---
--- Name: routes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE routes_id_seq
+CREATE SEQUENCE country_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -199,34 +102,13 @@ CREATE SEQUENCE routes_id_seq
     CACHE 1;
 
 
-ALTER TABLE routes_id_seq OWNER TO postgres;
+ALTER TABLE country_id_seq OWNER TO postgres;
 
 --
--- Name: routes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: country_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE routes_id_seq OWNED BY company_routes.id;
-
-
---
--- Name: routes_id_seq1; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE routes_id_seq1
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE routes_id_seq1 OWNER TO postgres;
-
---
--- Name: routes_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE routes_id_seq1 OWNED BY routes.id;
+ALTER SEQUENCE country_id_seq OWNED BY country.id;
 
 
 --
@@ -277,35 +159,14 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY area ALTER COLUMN id SET DEFAULT nextval('area_id_seq'::regclass);
+ALTER TABLE ONLY city ALTER COLUMN id SET DEFAULT nextval('city_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY category ALTER COLUMN id SET DEFAULT nextval('catagory_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY company ALTER COLUMN id SET DEFAULT nextval('company_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY company_routes ALTER COLUMN id SET DEFAULT nextval('routes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY routes ALTER COLUMN id SET DEFAULT nextval('routes_id_seq1'::regclass);
+ALTER TABLE ONLY country ALTER COLUMN id SET DEFAULT nextval('country_id_seq'::regclass);
 
 
 --
@@ -316,78 +177,41 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Data for Name: area; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: city; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY area (id, zipcode, name, pictures, info) FROM stdin;
+COPY city (id, name, area_code) FROM stdin;
 \.
 
 
 --
--- Name: area_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: city_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('area_id_seq', 1, false);
-
-
---
--- Name: catagory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('catagory_id_seq', 1, false);
-
-
---
--- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY category (id, name, picture, info) FROM stdin;
-\.
+SELECT pg_catalog.setval('city_id_seq', 1, false);
 
 
 --
 -- Data for Name: company; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY company (id, name, gps, phone, address, owner_id, area_id, category_id, picutres, hours, info, active, expires, users) FROM stdin;
+COPY company  FROM stdin;
 \.
 
 
 --
--- Name: company_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Data for Name: country; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('company_id_seq', 1, false);
-
-
---
--- Data for Name: company_routes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY company_routes (id, company_id, name, gps, distance, "time", info, pictures) FROM stdin;
+COPY country (id, name, land_code) FROM stdin;
 \.
 
 
 --
--- Data for Name: routes; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: country_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY routes (id, name, category_id, "unique", gps, pictures, info, user_id, active, area_id) FROM stdin;
-\.
-
-
---
--- Name: routes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('routes_id_seq', 1, false);
-
-
---
--- Name: routes_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('routes_id_seq1', 1, false);
+SELECT pg_catalog.setval('country_id_seq', 1, false);
 
 
 --
@@ -406,43 +230,19 @@ SELECT pg_catalog.setval('users_id_seq', 1, true);
 
 
 --
--- Name: id_area_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: id_city_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY area
-    ADD CONSTRAINT id_area_pkey PRIMARY KEY (id);
-
-
---
--- Name: id_category_pkay; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY category
-    ADD CONSTRAINT id_category_pkay PRIMARY KEY (id);
+ALTER TABLE ONLY city
+    ADD CONSTRAINT id_city_pkey PRIMARY KEY (id);
 
 
 --
--- Name: id_company_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: id_country_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY company
-    ADD CONSTRAINT id_company_pkey PRIMARY KEY (id);
-
-
---
--- Name: id_companyroutes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY company_routes
-    ADD CONSTRAINT id_companyroutes_pkey PRIMARY KEY (id);
-
-
---
--- Name: id_routes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY routes
-    ADD CONSTRAINT id_routes_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY country
+    ADD CONSTRAINT id_country_pkey PRIMARY KEY (id);
 
 
 --
@@ -451,62 +251,6 @@ ALTER TABLE ONLY routes
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT id_users_pkey PRIMARY KEY (id);
-
-
---
--- Name: areaid_company_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY company
-    ADD CONSTRAINT areaid_company_fkey FOREIGN KEY (area_id) REFERENCES area(id);
-
-
---
--- Name: areaid_routes_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY routes
-    ADD CONSTRAINT areaid_routes_fkey FOREIGN KEY (area_id) REFERENCES area(id);
-
-
---
--- Name: categoryid_company_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY company
-    ADD CONSTRAINT categoryid_company_fkey FOREIGN KEY (category_id) REFERENCES category(id);
-
-
---
--- Name: categoryid_routes_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY routes
-    ADD CONSTRAINT categoryid_routes_fkey FOREIGN KEY (category_id) REFERENCES category(id);
-
-
---
--- Name: companyid_companyroutes_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY company_routes
-    ADD CONSTRAINT companyid_companyroutes_fkey FOREIGN KEY (company_id) REFERENCES company(id);
-
-
---
--- Name: ownerid_company_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY company
-    ADD CONSTRAINT ownerid_company_fkey FOREIGN KEY (owner_id) REFERENCES users(id);
-
-
---
--- Name: userid_routes_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY routes
-    ADD CONSTRAINT userid_routes_fkey FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --

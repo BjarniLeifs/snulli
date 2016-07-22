@@ -9,24 +9,18 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$http
         .state('home', {
             url: '/home',
             templateUrl: 'library/navigation/navMain.html',
-            controller: 'AuthCtrl',
+            controller: 'NavCtrl',
             onEnter: ['$state', 'auth', function ($state, auth) {
-                if (!auth.isLoggedIn()) {
-                    //$state.go('login');
-                } 
 
             }]
-        });
-        /*.state('login', {
-            url: '/login',
-            templateUrl: 'views/partial/authenticate/login.html',
-            controller: 'AuthCtrl',
-            onEnter: ['$state', 'auth', function ($state, auth) {
-               if (auth.isLoggedIn()) {
-                    $state.go('home');
-               }
-            }]
         })
+        .state('home.register', {
+            url: '/register',
+            templateUrl: 'library/authentication/register.html',
+            controller: 'AuthCtrl',
+
+        })
+        /*
         .state('forgot', {
             url: '/forgot',
             templateUrl: 'views/forgotpassword.html',
