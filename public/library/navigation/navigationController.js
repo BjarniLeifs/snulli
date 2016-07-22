@@ -13,6 +13,7 @@ app.controller('NavCtrl', ['$scope', 'auth',
 			}).then(function () {
 				$state.go('home');
 			});
+			$timeout(function() { $scope.error = false; }, 1000);
 		};
 
     }

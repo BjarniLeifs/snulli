@@ -3,16 +3,8 @@
 app.controller('AuthCtrl', ['$scope', '$state', 'auth', '$stateParams', '$location', '$timeout',
     function ($scope, $state, auth, $stateParams, $location, $timeout) {
 
-    	$scope.newUser = {
-	    	name : $scope.regName,
-	    	username : $scope.regUsername,
-	   		email : $scope.regEmail,
-	   		password : $scope.regPassword
-	   	};
 
 	    $scope.register = function () {
-
-	    	console.log($scope.regPassword);
 
 	    	if ( $scope.regConfirmPassword === undefined  || $scope.regPassword === undefined || $scope.regEmail === undefined  
 	    		|| $scope.regName === undefined || $scope.regUsername === undefined ) {
@@ -22,7 +14,14 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', '$stateParams', '$locati
 
 	    	} 
 	    	else if ($scope.regConfirmPassword === $scope.regPassword) {
-	    		auth.register($scope.newUser).error(function (error) {
+	    		auth.register(
+	    			{
+	    				name 	 : $scope.regName,
+	    				username : $scope.regUsername,
+	   					email 	 : $scope.regEmail,
+	   					password : $scope.regPassword
+	    			}
+	    		).error(function (error) {
 					$scope.error = error;
 				}).then(function () {
 					$timeout(function() { $state.go('home'); }, 10);
@@ -32,7 +31,6 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', '$stateParams', '$locati
 	    	} 
 	    	else {
 	    		$scope.error = "The passwords did not match";
-	    		$timeout(function() { $scope.error = false; }, 1000);
 	    		$scope.regPassword = '';
 	    		$scope.regConfirmPassword = '';
 	    	}
