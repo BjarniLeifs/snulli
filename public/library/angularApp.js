@@ -16,10 +16,21 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$http
         })
         .state('home.register', {
             url: '/register',
-            templateUrl: 'library/authentication/register.html',
-            controller: 'AuthCtrl',
+            templateUrl: 'library/register/register.html',
+            controller: 'RegisterCtrl',
+            onEnter: ['$state', 'auth', function ($state, auth) {
 
-        })
+            }]
+
+        }).
+        state('home.login', {
+            url: '/login',
+            templateUrl: 'library/login/login.html',
+            controller: 'LoginCtrl',
+            onEnter: ['$state', 'auth', function ($state, auth) {
+
+            }]
+        });
         /*
         .state('forgot', {
             url: '/forgot',

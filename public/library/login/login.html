@@ -1,0 +1,16 @@
+<form ng-submit="logIn()" class="login-form">        
+  <div class="">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input type="text" class="form-control" placeholder="Username" ng-model="username" autofocus>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+      <input type="password" class="form-control" placeholder="Password" ng-model="password">
+    </div>
+    <button class="btn btn-default  btn-block" type="submit">Login</button>
+  </div>
+</form>
+<div ng-show="error" class="alert alert-danger row">
+  <span>{{ error.message }}</span>
+</div> 
