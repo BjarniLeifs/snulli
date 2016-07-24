@@ -2,17 +2,18 @@
 
 /* load the modern build */ 
 const _ = require('lodash');
-
+const authService = require('./../library/authentication');
 /* To check if person scopes (rights) */
-exports.scopes = (string) => {
-  "use strict";
+exports.checkRights = (string) => {
+  
+  console.log("í scopes");
   return (req, res, next) => {
       /* Get from scope in request (req) payload. */
-      let tokenScopes = req.payload.scopes;
+      let tokenScopes = authService.decodeJWT(req);
       let check = false;
 
       /* Checking for every scope, for val in scope and return it */
-      let checking = _.forEach(tokenScopes, (val) => {
+      let checking = _.forEach(tokenScopes.scopes, (val) => {
            if(_.isEqual(string, val))
             check = true;
 

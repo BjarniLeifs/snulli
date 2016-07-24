@@ -94,6 +94,7 @@ requirejs.config({
 
 
 app.use('/auth',require('./routes/authentications'));
+app.use('/admin',require('./routes/admins'));
 app.use('/api',require('./routes/index'));
 app.use('/api', require('./routes/users'));
 

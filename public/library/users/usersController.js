@@ -1,6 +1,7 @@
-app.controller('UsersCtrl', ['$scope', '$state', 'auth', '$stateParams', '$location', '$timeout', '$window',
-    function ($scope, $state, auth, $stateParams, $location, $timeout, $window)  {
+app.controller('UsersCtrl', ['$scope', '$state', 'usersFact', '$stateParams', '$location', '$timeout', '$window',
+    function ($scope, $state, usersFact, $stateParams, $location, $timeout, $window)  {
 		
+		$scope.users = usersFact.getUsers();
 
     }
 ]);

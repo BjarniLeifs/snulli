@@ -14,8 +14,9 @@ const dateService = require('./../library/dates');
 const authService = require('./../library/authentication');
 const authenticated = require('./../library/scopes');
 
+
 /* GET users listing. */
-router.get('/users/users', authenticated.scopes('user'), (req, res, next) => {
+router.get('/users/users', authenticated.checkRights('user'), (req, res, next) => {
 	"use strict";
 	let table = 'users';
 	let string = 'SELECT * FROM ' + table;
