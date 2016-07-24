@@ -5,8 +5,7 @@ const _ = require('lodash');
 const authService = require('./../library/authentication');
 /* To check if person scopes (rights) */
 exports.checkRights = (string) => {
-  
-  console.log("í scopes");
+
   return (req, res, next) => {
       /* Get from scope in request (req) payload. */
       let tokenScopes = authService.decodeJWT(req);

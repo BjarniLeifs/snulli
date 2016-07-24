@@ -33,6 +33,4 @@ router.get('/users', authenticated.checkRights('admin'), (req, res, next) => {
 
 
 
-
-
 module.exports = router;

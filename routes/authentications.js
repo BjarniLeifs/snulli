@@ -19,7 +19,6 @@ const authService = require('./../library/authentication');
 /* function register for registering new users */
 router.post('/register', (req, res, next) => {
 	"use strict";
-	console.log(req.body);
 	/* USERNAME should be lowerCASE! to ensure we get unique names at all times. */
 	let resUser = [req.body.username];
 	/* Defining and looking for user with username before I can add to database.*/
