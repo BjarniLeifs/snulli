@@ -1,5 +1,5 @@
-app.controller('AdminCtrl', ['$scope', '$state', 'auth', '$stateParams', '$location', '$timeout', '$window',
-    function ($scope, $state, auth, $stateParams, $location, $timeout, $window) {
+app.controller('AdminCtrl', ['$scope', '$state', 'authFact', '$stateParams', '$location', '$timeout', '$window',
+    function ($scope, $state, authFact, $stateParams, $location, $timeout, $window) {
 		
  
     }

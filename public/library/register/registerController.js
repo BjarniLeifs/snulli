@@ -1,7 +1,7 @@
 
 
-app.controller('RegisterCtrl', ['$scope', '$state', 'auth', '$stateParams', '$location', '$timeout',
-    function ($scope, $state, auth, $stateParams, $location, $timeout) {
+app.controller('RegisterCtrl', ['$scope', '$state', 'authFact', '$stateParams', '$location', '$timeout',
+    function ($scope, $state, authFact, $stateParams, $location, $timeout) {
 
 
 	    $scope.register = function () {
@@ -14,7 +14,7 @@ app.controller('RegisterCtrl', ['$scope', '$state', 'auth', '$stateParams', '$lo
 
 	    	} 
 	    	else if ($scope.regConfirmPassword === $scope.regPassword) {
-	    		auth.register(
+	    		authFact.register(
 	    			{
 	    				name 	 : $scope.regName,
 	    				username : $scope.regUsername,

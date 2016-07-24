@@ -1,6 +1,6 @@
 //* AuthenticationFactory */
 
-app.factory('auth', ['$http', '$window', '$location', function ($http, $window, $location) {
+app.factory('authFact', ['$http', '$window', '$location', function ($http, $window, $location) {
     return {
         getToken: function () {
             return $window.localStorage['appToken'];

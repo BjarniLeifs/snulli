@@ -11,7 +11,7 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$http
             url: '/home',
             templateUrl: 'library/home/home.html',
             controller: 'HomeCtrl',
-            onEnter: ['$state', 'auth', function ($state, auth) {
+            onEnter: ['$state', 'authFact', function ($state, auth) {
             
             }]
         })
@@ -19,28 +19,21 @@ app.config([ '$stateProvider', '$urlRouterProvider', '$locationProvider', '$http
             url: '/register',
             templateUrl: 'library/register/register.html',
             controller: 'RegisterCtrl',
-            onEnter: ['$state', 'auth', function ($state, auth) {
-
-            }]
-
         })
         .state('login', {
             url: '/login',
             templateUrl: 'library/login/login.html',
             controller: 'NavCtrl',
-            onEnter: ['$state', 'auth', function ($state, auth) {
-
-            }]
         })
         .state('admin', {
             url: '/admin',
             templateUrl: 'library/administration/admin.html',
             controller: 'AdminCtrl'
         })
-        .state('admin.users', {
-            url: '/users',
-            templateUrl: 'library/users/users.html',
-            controller : 'UsersCtrl'
+        .state('users', {
+            url: '/admin/users',
+            templateUrl: 'library/admin_users/adminUsers.html',
+            controller : 'AdminUsersCtrl'
         });
         /*
         .state('forgot', {

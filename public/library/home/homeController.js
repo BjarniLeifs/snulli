@@ -1,5 +1,5 @@
-app.controller('HomeCtrl', ['$scope', '$state', 'auth', '$stateParams', '$location', '$timeout',
-    function ($scope, $state, auth, $stateParams, $location, $timeout) {
+app.controller('HomeCtrl', ['$scope', '$state', 'authFact', '$stateParams', '$location', '$timeout',
+    function ($scope, $state, authFact, $stateParams, $location, $timeout) {
 
     	
 

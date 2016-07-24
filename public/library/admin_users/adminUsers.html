@@ -1,0 +1,23 @@
+
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><i class="glyphicon glyphicon-user"></i> Name</th>
+                <th><i class="glyphicon glyphicon-user"></i> Username</th>
+                <th><i class="glyphicon glyphicon-envelope"></i> Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
