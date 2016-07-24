@@ -6,12 +6,21 @@ app.factory('auth', ['$http', '$window', '$location', function ($http, $window, 
             return $window.localStorage['appToken'];
         },
         isLoggedIn: function () {
-            var token = getToken();
+            var token = $window.localStorage['appToken'];
 
-            if(token){
+            if (token) {
                 var payload = JSON.parse($window.atob( token.split('.')[1]) );
 
                 return payload.exp > Date.now() / 1000;
+            } else {
+                return false;
+            }
+        },
+        isAdmin: function () {
+            var token = $window.localStorage['appToken'];
+            if (token) {
+                var payload = JSON.parse($window.atob( token.split('.')[1]));
+                return payload.isadmin;
             } else {
                 return false;
             }
@@ -22,7 +31,8 @@ app.factory('auth', ['$http', '$window', '$location', function ($http, $window, 
         },
         logIn: function (user) {
             return $http.post('/auth/login', user).success(function (data) {
-                $window.localStorage['appToken'] = data.token;
+                $window.localStorage['appToken'] = data.token;    
+                $location.path('/home');
             });
         },
         logOut: function () {

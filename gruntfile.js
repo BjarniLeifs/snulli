@@ -26,7 +26,7 @@ module.exports = (grunt) => {
         banner: '/*! Made on <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       all: {
-        src: ['public/library/**/*.css'],
+        src: ['public/library/**/**/*.css'],
         dest: 'public/build/myApp.css',
       }
     },

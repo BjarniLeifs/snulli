@@ -129,7 +129,9 @@ exports.generateJWT = (object) => {
 		id 		: object.id,
 		username: object.username,
 		name 	: object.name,	
+		isadmin	: object.admin,
 		scopes  : scopes,
+
 		exp 	: parseInt(exp.getTime() /1000)
 	}, 
 	config.secret);
