@@ -13,9 +13,9 @@ const service  	= require('./../library/dbLibrary');
 const dateService = require('./../library/dates');
 const authService = require('./../library/authentication');
 const authenticated = require('./../library/scopes');
+const _ = require('lodash');
 
-
-router.get('/users', authenticated.checkRights('admin'), (req, res, next) => {
+router.get('/users', (req, res, next) => {
 	"use strict";
 	let table = 'users';
 	let string = 'SELECT * FROM ' + table;
@@ -29,8 +29,36 @@ router.get('/users', authenticated.checkRights('admin'), (req, res, next) => {
 	});
 	
 });
+router.put('/active', (req, res, next) => {
+	"use strict";
+	var check = _.toNumber(req.body.userId);
+	console.log(_.isNumber(check));
 
+	if (_.isNumber(check)){
+		return res.status(200).json({message: 'it is a number : '+check});
+	}
+	else if (!req.body.userId) {
+		return res.status(400).json({message: 'Provide id of user!'});
+	}
 
+	return res.status(200).json({message: check});
+});
+router.put('/deactivate/:uid', (req, res, next) => {
+	"use strict";
+});
+router.put('/make/admin/:uid', (req, res, next) => {
+	"use strict";
+});
+router.put('/remove/admin/:uid', (req, res, next) => {
+	"use strict";
+});
+
+router.put('/make/moderator/:uid', (req, res, next) => {
+	"use strict";
+});
+router.put('/remove/moderator/:uid', (req, res, next) => {
+	"use strict";
+});
 
 
 module.exports = router;

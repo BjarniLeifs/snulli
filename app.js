@@ -27,7 +27,8 @@ const jwt = require('jsonwebtoken');
 const jwtCheck = require('express-jwt');
 /* Loading secret configuration */
 const config = require('./config/configuration');
-
+/* Loading security checker */
+const authenticated = require('./library/scopes');
 /* Defining app as express server */
 const app = express();
 /* Configuring App sets and it's use */
@@ -58,23 +59,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* 
+  Token security checks.
   Defining that all API calls need to be authanticated.
   This is token security to ensure permission in the app 
-  when someone calls for /api/.... 
+  when someone calls for /api or /admin and so on...
  */
 app.use('/api',jwtCheck({
   secret: config.secret,
   userProperty: config.payload
 }));
 
-/*   held þetta sé swagger
-requirejs.config({
-    //Pass the top-level main.js/index.js require
-    //function to requirejs so that node modules
-    //are loaded relative to the top-level JS file.
-    nodeRequire: require
-});
-*/
+app.use('/admin', authenticated.checkRights('admin'), jwtCheck({
+  secret: config.secret,
+  userProperty: config.payload
+}));
+
+
 /* 
   ROUTES activated and telling app where the routes are  for "API" calls!
 
@@ -92,11 +92,12 @@ requirejs.config({
 
 */
 
-
-app.use('/auth',require('./routes/authentications'));
+/* Open routes */
+app.use('/auth', require('./routes/authentications'));
+/* Closed routes */
 app.use('/admin',require('./routes/admins'));
-app.use('/api',require('./routes/index'));
-app.use('/api', require('./routes/users'));
+app.use('/api',  require('./routes/index'));
+app.use('/api',  require('./routes/users'));
 
 /* Catch 404 and forward to error handler */
 app.use((req, res, next) => {
@@ -133,7 +134,7 @@ module.exports = app;
 
 /*
   More logic about starting server, port and getting env configurations from cloud 
-  If needed autmaticly hence the env configurations in nameOfApp/bin/www
+  If needed autmaticly hence the env configurations in bin/www
 */
 
 
