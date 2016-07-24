@@ -20,7 +20,7 @@ router.get('/users', authenticated.checkRights('admin'), (req, res, next) => {
 	let table = 'users';
 	let string = 'SELECT * FROM ' + table;
 	
-	service.queryStringUser(string, (err, result) => {
+	service.queryStringAdmin(string, (err, result) => {
 		if (result) {
 			return res.status(200).json(result);
 		} else {

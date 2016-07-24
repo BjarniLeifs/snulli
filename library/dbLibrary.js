@@ -28,10 +28,59 @@ exports.queryStringUser = (string, cb) => {
 		/* Stream results back */
 		query.on('row', (row) => {
 			let object = {
-				id : row.id,
-				name : row.name,
-				email : row.email,
-				username : row.username
+				id 			: row.id,
+				name 		: row.name,
+				email 		: row.email,
+				username 	: row.username,
+				phone 		: row.phone,
+				address 	: row.address,
+				active 		: row.active,
+				companies 	: row.companies
+			};
+			results.push(object);
+		});
+
+		/* close connection */
+		query.on('end', () => {
+			if (err) {
+				done();
+				return cb(err, null);
+			} else {
+				done();
+				return cb(err,results);
+			}
+		});
+	});
+};
+exports.queryStringAdmin = (string, cb) => {
+	"use strict";
+	let results = [];	
+		
+	pg.connect(connectionString, (err, client, done) => {
+		if (err) {
+			done(err);
+			return cb(err, null);
+		}
+
+		/* SQL Query, select data */
+		let query = client.query(string,
+			(err, result) => {
+        		done();
+    		}
+    	);
+
+		/* Stream results back */
+		query.on('row', (row) => {
+			let object = {
+				id 			: row.id,
+				name 		: row.name,
+				email 		: row.email,
+				username 	: row.username,
+				phone 		: row.phone,
+				admin 		: row.admin,
+				moderator 	: row.moderator,
+				active 		: row.active,
+				
 			};
 			results.push(object);
 		});
@@ -104,10 +153,14 @@ exports.queryStringValueUser = (string, value, cb) => {
 		/* Stream results back */
 		query.on('row', (row) => {
 			let object = {
-				id : row.id,
-				name : row.name,
-				email : row.email,
-				username : row.username
+				id 			: row.id,
+				name 		: row.name,
+				email 		: row.email,
+				username 	: row.username,
+				phone 		: row.phone,
+				address 	: row.address,
+				active 		: row.active,
+				companies 	: row.companies
 			};
 			results.push(object);
 		});

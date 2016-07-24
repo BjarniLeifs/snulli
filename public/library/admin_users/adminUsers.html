@@ -2,21 +2,29 @@
 
 
 <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>#</th>
                 <th><i class="glyphicon glyphicon-user"></i> Name</th>
                 <th><i class="glyphicon glyphicon-user"></i> Username</th>
                 <th><i class="glyphicon glyphicon-envelope"></i> Email</th>
+                <th><i class="glyphicon glyphicon-king"></i>Admin</th>
+                <th><i class="glyphicon glyphicon-knight"></i>Moderator</th>
+                <th><i class="glyphicon glyphicon-thumbs-up"></i>Active</th>
+                
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="user in users">
+
                 <td>{{ user.id }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.admin }}</td>
+                <td>{{ user.moderator }}</td>
+                <td>{{ user.active }}</td>
             </tr>
         </tbody>
     </table>

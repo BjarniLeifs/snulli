@@ -25,11 +25,12 @@ exports.register = (req, cb) => {
 	"use strict";
 	bcrypt.genSalt(10, (err, salt) => {
 	    bcrypt.hash(req.body.password, salt, (err, hash) => {
-			let stringAdd = 'INSERT INTO users (username, name, email, hash)';
-				stringAdd +='  VALUES($1, $2, $3, $4) returning *';
+			let stringAdd = 'INSERT INTO users (username, name, email, hash, resettoken, tokenexpired, admin, phone, address, moderator, active)';
+				stringAdd +='  VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) returning *';
 				// Defining values to insert 
 				let value = [req.body.username, req.body.name, 
-							req.body.email, hash];
+							req.body.email, hash, null, null,
+							false, null, null, false, true];
 				// Calling postService to add values with string constrains 
 			service.queryStringValue(stringAdd, value, (err, results) => {
 					if (err) 
