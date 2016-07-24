@@ -219,10 +219,6 @@ SELECT pg_catalog.setval('country_id_seq', 1, false);
 --
 
 COPY users (id, resettoken, tokenexpired, name, email, username, hash, admin, phone, address, moderator, active, companies) FROM stdin;
-6	\N	\N	asdf	asdf	asdf	$2a$10$GYc4XkM2YuqLroZ6PGFU1e9/e5sZcHDe7sUkQolmre.9huNe5Jk2y	\N	\N	\N	\N	\N	\N
-7	\N	\N	f	f	f	$2a$10$RRJ3ve5/sUUGqJe/bM2.MesjaQaXlWHCGfWXkOY8Mg/wnve54Yb.e	\N	\N	\N	\N	\N	\N
-8	\N	\N	df	df	df	$2a$10$cyEzb8cgRKnIpJa5YWk02uRV1grHMqD/UjHY65sYY2Ls/sf9ROin.	\N	\N	\N	\N	\N	\N
-9	\N	\N	Bjarni	bjarni	Bjarni	$2a$10$3fZo0jhYnTaPaPd9bcO9j.vqUrEd2jv93JMpgT1c4ryJPJj1KATM2	t	\N	\N	\N	\N	\N
 \.
 
 
@@ -230,7 +226,7 @@ COPY users (id, resettoken, tokenexpired, name, email, username, hash, admin, ph
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 9, true);
+SELECT pg_catalog.setval('users_id_seq', 1, true);
 
 
 --
