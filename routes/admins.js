@@ -32,12 +32,11 @@ router.get('/users', (req, res, next) => {
 router.put('/active', (req, res, next) => {
 	"use strict";
 	var check = _.toNumber(req.body.userId);
-	console.log(_.isNumber(check));
 
 	if (_.isNumber(check)){
 		return res.status(200).json({message: 'it is a number : '+check});
 	}
-	else if (!req.body.userId) {
+	else {
 		return res.status(400).json({message: 'Provide id of user!'});
 	}
 

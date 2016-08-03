@@ -33,9 +33,8 @@ const authenticated = require('./library/scopes');
 const app = express();
 /* Configuring App sets and it's use */
 
-
-
 /* View engine setup */
+
 /* Make engine html use ejs render. */
 app.engine('html', require('ejs').renderFile);
 
@@ -55,7 +54,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 /* Middleware to read/write and other things of cookies */
 app.use(cookieParser());
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* 

@@ -76,7 +76,6 @@ exports.queryStringAdmin = (string, cb) => {
 				name 		: row.name,
 				email 		: row.email,
 				username 	: row.username,
-				phone 		: row.phone,
 				admin 		: row.admin,
 				moderator 	: row.moderator,
 				active 		: row.active,
