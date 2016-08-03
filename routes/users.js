@@ -16,7 +16,7 @@ const authenticated = require('./../library/scopes');
 
 
 /* GET users listing. */
-router.get('/users/users', authenticated.checkRights('user'), (req, res, next) => {
+router.get('/users', authenticated.checkRights('user'), (req, res, next) => {
 	"use strict";
 	let table = 'users';
 	let string = 'SELECT * FROM ' + table;
@@ -34,7 +34,7 @@ router.get('/users/users', authenticated.checkRights('user'), (req, res, next) =
 
 
 /* Delete user, this is only for the user himself, if not the same then nothing happens*/
-router.delete('/users/user/:id', (req, res, next) => {
+router.delete('/user/:id', (req, res, next) => {
 	"use strict";
 	if(!req.params.id) {
 		return res.status(400).json({messgae : 'You have to provide id of user'});
@@ -57,7 +57,7 @@ router.delete('/users/user/:id', (req, res, next) => {
 });
 
 /* Delete user, this is only for the user himself, if not the same then nothing happens*/
-router.delete('/users/user/:username', (req, res, next) => {
+router.delete('/user/:username', (req, res, next) => {
 	"use strict";
 	if(!req.params.username) {
 		return res.status(400).json({messgae : 'You have to provide id of user'});
