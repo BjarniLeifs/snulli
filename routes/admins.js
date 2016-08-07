@@ -120,7 +120,7 @@ router.put('/make/moderator', (req, res, next) => {
 	let table = 'users';
 	let string = 'UPDATE ' +table+ ' SET moderator = ($1) WHERE id = ($2)';
 	let value = [true, check];
-
+	console.log(req.payload);
 	if (_.isNumber(check) && !(_.isNaN(check))) {
 		service.queryStringValue(string, value, (err, result) => {
 			if (result) {

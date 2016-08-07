@@ -13,7 +13,7 @@ const service  	= require('./../library/dbLibrary');
 const dateService = require('./../library/dates');
 const authService = require('./../library/authentication');
 const authenticated = require('./../library/scopes');
-
+const _ = require('lodash');
 
 /* GET users listing. */
 router.get('/users', authenticated.checkRights('user'), (req, res, next) => {
@@ -30,8 +30,6 @@ router.get('/users', authenticated.checkRights('user'), (req, res, next) => {
 	});
 	
 });
-
-
 
 /* Delete user, this is only for the user himself, if not the same then nothing happens*/
 router.delete('/user/:id', (req, res, next) => {
@@ -79,6 +77,104 @@ router.delete('/user/:username', (req, res, next) => {
  
 });
 
+router.put('/update/name', (req, res, next) => {
+	"use strict";
+	let check = _.toNumber(req.payload.id);
+	if (!check && !req.body.name){
+		return res.status(400).json({message: 'Please provide a name.'});
+	}
 
+	let table = 'users';
+	let string = 'UPDATE ' +table+ ' SET name = ($1) WHERE id = ($2)';
+	let value = [req.body.name, check];
+
+
+	if (_.isNumber(check) && !(_.isNaN(check)) && (_.isString(req.body.name))) {
+		service.queryStringValue(string, value, (err, result) => {
+			if (result) {
+				return res.status(200).json({message: 'Name has been updated'});
+			} else {
+				return res.status(400).json({message: 'Error running query to '+ table});
+			} 
+		});
+	} else {
+		return res.status(400).json({message: 'Provide name of user.'});
+	}
+
+
+
+});
+
+router.put('/update/phone', (req, res, next) => {
+	"use strict";
+	let check = _.toNumber(req.payload.id);
+	if (!check && !req.body.name){
+		return res.status(400).json({message: 'Please provide a phonenumber.'});
+	}
+	
+	let table = 'users';
+	let string = 'UPDATE ' +table+ ' SET phone = ($1) WHERE id = ($2)';
+	let value = [req.body.phone, check];
+
+	if (_.isNumber(check) && !(_.isNaN(check)) && (_.isString(req.body.phone))) {
+		service.queryStringValue(string, value, (err, result) => {
+			if (result) {
+				return res.status(200).json({message: 'Phone has been updated'});
+			} else {
+				return res.status(400).json({message: 'Error running query to '+ table});
+			} 
+		});
+	} else {
+		return res.status(400).json({message: 'Provide phonenumber for user.'});
+	}
+});
+
+router.put('/update/address', (req, res, next) => {
+	"use strict";
+	let check = _.toNumber(req.payload.id);
+	if (!check && !req.body.address){
+		return res.status(400).json({message: 'Please provide a address.'});
+	}
+	
+	let table = 'users';
+	let string = 'UPDATE ' +table+ ' SET address = ($1) WHERE id = ($2)';
+	let value = [req.body.address, check];
+
+	if (_.isNumber(check) && !(_.isNaN(check)) && (_.isString(req.body.address))) {
+		service.queryStringValue(string, value, (err, result) => {
+			if (result) {
+				return res.status(200).json({message: 'Address has been updated'});
+			} else {
+				return res.status(400).json({message: 'Error running query to '+ table});
+			} 
+		});
+	} else {
+		return res.status(400).json({message: 'Provide address for user.'});
+	}
+});
+
+router.put('/update/email', (req, res, next) => {
+	"use strict";
+	let check = _.toNumber(req.payload.id);
+	if (!check && !req.body.email){
+		return res.status(400).json({message: 'Please provide a email.'});
+	}
+	
+	let table = 'users';
+	let string = 'UPDATE ' +table+ ' SET email = ($1) WHERE id = ($2)';
+	let value = [req.body.email, check];
+
+	if (_.isNumber(check) && !(_.isNaN(check)) && (_.isString(req.body.email))) {
+		service.queryStringValue(string, value, (err, result) => {
+			if (result) {
+				return res.status(200).json({message: 'Email has been updated'});
+			} else {
+				return res.status(400).json({message: 'Error running query to '+ table});
+			} 
+		});
+	} else {
+		return res.status(400).json({message: 'Provide email for user.'});
+	}
+});
 
 module.exports = router;
