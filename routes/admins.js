@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 /* Definging postgressSQL module */
 const pg = require('pg');
 /* Definging configuration of database config */
@@ -15,11 +14,12 @@ const authService = require('./../library/authentication');
 const authenticated = require('./../library/scopes');
 const _ = require('lodash');
 
+//Get all users, this is from admin result which gives more information to admin then others
 router.get('/users', (req, res, next) => {
 	"use strict";
 	let table = 'users';
 	let string = 'SELECT * FROM ' + table;
-	
+	// using db library for admin query
 	service.queryStringAdmin(string, (err, result) => {
 		if (result) {
 			return res.status(200).json(result);
@@ -30,14 +30,15 @@ router.get('/users', (req, res, next) => {
 	
 });
 
+// Make user active 
 router.put('/active', (req, res, next) => {
 	"use strict";
 	let check = _.toNumber(req.body.userId);
 	let table = 'users';
 	let string = 'UPDATE ' +table+ ' SET active = ($1) WHERE id = ($2)';
 	let value = [true, req.body.userId];
-	console.log(check);
 
+	// Check for number of userid and if it is nan or not. 
 	if (_.isNumber(check) && !(_.isNaN(check))) {
 		service.queryStringValue(string, value, (err, result) => {
 			if (result) {
@@ -52,6 +53,7 @@ router.put('/active', (req, res, next) => {
 	}
 });
 
+// Deactivated users. 
 router.put('/deactivate', (req, res, next) => {
 	"use strict";
 	let check = _.toNumber(req.body.userId);
@@ -72,6 +74,8 @@ router.put('/deactivate', (req, res, next) => {
 		return res.status(400).json({message: 'Provide id of user to deactivate.'});
 	}
 });
+
+// making user admin. 
 router.put('/make/admin', (req, res, next) => {
 	"use strict";
 	let check = _.toNumber(req.body.userId);
@@ -93,6 +97,7 @@ router.put('/make/admin', (req, res, next) => {
 	}
 });
 
+// remove admin from user
 router.put('/remove/admin', (req, res, next) => {
 	"use strict";
 	let check = _.toNumber(req.body.userId);
@@ -114,6 +119,7 @@ router.put('/remove/admin', (req, res, next) => {
 	}
 });
 
+// make user moderator 
 router.put('/make/moderator', (req, res, next) => {
 	"use strict";
 	let check = _.toNumber(req.body.userId);
@@ -135,6 +141,7 @@ router.put('/make/moderator', (req, res, next) => {
 	}
 });
 
+// remove moderator of user
 router.put('/remove/moderator', (req, res, next) => {
 	"use strict";
 	let check = _.toNumber(req.body.userId);

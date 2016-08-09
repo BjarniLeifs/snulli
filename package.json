@@ -12,7 +12,7 @@
     "dropdb": "dropdb armor && dropdb testarmor",
     "schemadb-mac": "psql -d armor -f sqlSchems/database.sql && psql -d testarmor -f sqlSchems/database.sql",
     "backupdb-mac": "cat ./sqlSchems/database.sql > ./sqlSchems/backup/database_`date +\"%d-%m-%Y\"`.sql",
-    "dumpdb" : "pg_dump armor > ./sqlSchems/database.sql",
+    "dumpdb": "pg_dump armor > ./sqlSchems/database.sql",
     "add-testdata": "node data/test/testglobal.js",
     "test": "mocha"
   },
@@ -24,6 +24,7 @@
     "ejs": "^2.4.2",
     "express": "~4.13.1",
     "express-jwt": "^3.4.0",
+    "isemail": "^2.2.1",
     "jsonwebtoken": "^7.0.1",
     "lodash": "^4.13.1",
     "morgan": "~1.6.1",

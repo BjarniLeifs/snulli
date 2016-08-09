@@ -72,7 +72,6 @@ app.use('/admin', authenticated.checkRights('admin'), jwtCheck({
   userProperty: config.payload
 }));
 
-
 /* 
   ROUTES activated and telling app where the routes are  for "API" calls!
 
@@ -95,7 +94,7 @@ app.use('/auth', require('./routes/authentications'));
 /* Closed routes */
 app.use('/admin',require('./routes/admins'));
 app.use('/api',  require('./routes/index'));
-app.use('/api/users',  require('./routes/users'));
+app.use('/api/users', require('./routes/users'));
 
 /* Catch 404 and forward to error handler */
 app.use((req, res, next) => {

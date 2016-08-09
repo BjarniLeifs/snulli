@@ -14,9 +14,10 @@ const dateService = require('./../library/dates');
 const authService = require('./../library/authentication');
 const authenticated = require('./../library/scopes');
 const _ = require('lodash');
+const isEmail = require('isemail');
 
 /* GET users listing. */
-router.get('/users', authenticated.checkRights('user'), (req, res, next) => {
+router.get('/users',  (req, res, next) => {
 	"use strict";
 	let table = 'users';
 	let string = 'SELECT * FROM ' + table;
@@ -156,6 +157,7 @@ router.put('/update/address', (req, res, next) => {
 router.put('/update/email', (req, res, next) => {
 	"use strict";
 	let check = _.toNumber(req.payload.id);
+
 	if (!check && !req.body.email){
 		return res.status(400).json({message: 'Please provide a email.'});
 	}
@@ -164,7 +166,7 @@ router.put('/update/email', (req, res, next) => {
 	let string = 'UPDATE ' +table+ ' SET email = ($1) WHERE id = ($2)';
 	let value = [req.body.email, check];
 
-	if (_.isNumber(check) && !(_.isNaN(check)) && (_.isString(req.body.email))) {
+	if (isEmail.validate(req.body.email) && _.isNumber(check) && !(_.isNaN(check)) && (_.isString(req.body.email))) {
 		service.queryStringValue(string, value, (err, result) => {
 			if (result) {
 				return res.status(200).json({message: 'Email has been updated'});
@@ -176,5 +178,30 @@ router.put('/update/email', (req, res, next) => {
 		return res.status(400).json({message: 'Provide email for user.'});
 	}
 });
+
+router.get('/profile', (req, res, next) => {
+	"use strict";
+	console.log("test");
+	let check = _.toNumber(req.payload.id);
+	if (check) {
+		let table = 'users';
+		let string = 'Select * from ' +table+ ' where id = ($1)';
+		let value = [check];
+		
+		service.queryStringValueUser(string, value, (err, result) => {
+			if (result) {
+				return res.status(200).json(result);
+			} else {
+				return res.status(400).json({message: 'Error running query to '+ table});
+			} 
+		});
+	
+	} else {
+		return res.status(400).json({message: 'You do not have any profile.'});
+	}
+
+});
+
+
 
 module.exports = router;

@@ -12,7 +12,7 @@ const connectionString = process.env.DATABASE_URL || config.connectionUrl;
 const service  	= require('./../library/dbLibrary');
 const dateService = require('./../library/dates');
 const authService = require('./../library/authentication');
-
+const isEmail = require('isemail');
 //Just for development
 
 
@@ -27,17 +27,23 @@ router.post('/register', (req, res, next) => {
 	//Calling for that user if exist it prompt the result else insert into database. 
 	service.queryStringValue(string, resUser, 
 		(err, result) => {
+			// if result is less then 1, then username is free
 			if (result.length < 1) {
-				authService.register(req, (err, results) => {
-					if(err) {
-						return res.status(400).json({message: 'Error running query'});
-					}
-					if (!results) {
-						return res.status(400).json({message: 'Error adding user.'});
-					} else {
-						return res.status(200).json({message: 'User added succesfully.'});
-					}
-				});
+				// Check if email is valid
+				if (isEmail.validate(req.body.email)) {
+					authService.register(req, (err, results) => {
+						if(err) {
+							return res.status(400).json({message: 'Error running query'});
+						}
+						if (!results) {
+							return res.status(400).json({message: 'Error adding user.'});
+						} else {
+							return res.status(200).json({message: 'User added succesfully.'});
+						}
+					});
+				} else {
+					return res.status(400).json({message: 'Please provide valid email.'});
+				}
 			} else {
 				// User was found, returning to user for his knowladge
 				return res.status(400).json({message: 'Username already exists.'});	
