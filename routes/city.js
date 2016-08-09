@@ -15,7 +15,19 @@ const authenticated = require('./../library/scopes');
 const _ = require('lodash');
 
 
-
+router.get('/all',  (req, res, next) => {
+	"use strict";
+	let table = 'city';
+	let string = 'SELECT * FROM ' + table;
+	
+	service.queryString(string, (err, result) => {
+		if (result) {
+			return res.status(200).json(result);
+		} else {
+			return res.status(400).json({message: 'Error running query to '+ table});
+		}
+	});
+});
 
 
 

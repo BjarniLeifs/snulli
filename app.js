@@ -95,6 +95,7 @@ app.use('/auth', require('./routes/authentications'));
 app.use('/admin',require('./routes/admins'));
 app.use('/api',  require('./routes/index'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/country', require('./routes/country'));
 
 /* Catch 404 and forward to error handler */
 app.use((req, res, next) => {
